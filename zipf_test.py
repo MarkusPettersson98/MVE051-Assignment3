@@ -1,27 +1,12 @@
 import re  # Library for dealing with regular expressions
 from functools import reduce
+from textprocessing import get_words, clean_file
 
 swedish_dictionary ={
 }
 
 english_dictionary ={
 }
-
-
-def get_words(text):
-    # Use regex to remove special characters from text and replace them with whitespaces
-    cleaned_text = re.sub("[\W]{1,}", " ", text)
-
-    # Split at whitespace
-    text_list = re.split(" ", cleaned_text)
-
-    return text_list
-
-
-def clean_file(filename):
-    file = open(filename, "r")
-    file_text = file.read()
-    return get_words(file_text)
 
 
 def initDictionary(arr, dictionary):
