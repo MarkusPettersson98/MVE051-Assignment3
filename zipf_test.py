@@ -8,12 +8,14 @@ swedish_dictionary ={
 english_dictionary ={
 }
 
+# populates given dictionary with unique words in arr.
 def initDictionary(arr, dictionary):
 	for word in arr:
 		lword = word.lower()
 		if lword not in dictionary:
 			dictionary[lword] = 0
 
+# counts occurences of words in the dictionary.
 def countOccur(words, dictionary):
 	for word in words:
 		lword = word.lower()
