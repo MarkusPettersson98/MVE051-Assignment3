@@ -6,7 +6,7 @@ from functools import reduce
 
 def get_words(text):
     # Use regex to remove special characters from text and replace them with whitespaces
-    special_character_filter = "[^äåöÄÅÖéÉ\w]{1,}" # Exclude nordic characters from regexp
+    special_character_filter = "[^äåöÄÅÖéÉ\w]+" # Exclude nordic characters from regexp
     cleaned_text = re.sub(special_character_filter, " ", text)
 
     # Split at whitespace
@@ -42,4 +42,3 @@ print("Kvot vanliga ord (svenska / engelska): ",
       avg_len_common_swedish / avg_len_common_english)
 print("Kvot röda rummet ord (svenska / engelska): ",
       avg_len_red_swedish / avg_len_red_english)
-# print(clean_file("moby.txt"))
