@@ -6,7 +6,8 @@ from functools import reduce
 
 def get_words(text):
     # Use regex to remove special characters from text and replace them with whitespaces
-    cleaned_text = re.sub("[\W]{1,}", " ", text)
+    special_character_filter = "[^äåöÄÅÖéÉ\w]{1,}" # Exclude nordic characters from regexp
+    cleaned_text = re.sub(special_character_filter, " ", text)
 
     # Split at whitespace
     text_list = re.split(" ", cleaned_text)
