@@ -14,16 +14,6 @@ def get_words(text):
     return text_list
 
 
-def expand_words(text):
-    # Turn abbreviations into their full word counterparts, e.g. "there's" -> "there is"
-    isified_text = re.sub("([\w])'(s)", r"\1 is", text)
-
-    # "should've" -> "should have"
-    haveified_text = re.sub("([\w])'(ve)", r"\1 have", isified_text)
-
-    return haveified_text
-
-
 def average_length(words):
     # Given a text, calculate the average length of all words
     text_length = reduce(lambda acc, word: acc + len(word), words, 0)
@@ -47,6 +37,8 @@ print("Vanlig ord Svenska", avg_len_common_swedish)
 print("Vanlig ord Engelska", avg_len_common_english)
 print("Röda rummet Svenska: ", avg_len_red_swedish)
 print("Röda rummet Engelska: ", avg_len_red_english)
-print("Kvot vanliga ord (svenska / engelska): ", avg_len_common_swedish / avg_len_common_english)
-print("Kvot röda rummet ord (svenska / engelska): ", avg_len_red_swedish / avg_len_red_english)
+print("Kvot vanliga ord (svenska / engelska): ",
+      avg_len_common_swedish / avg_len_common_english)
+print("Kvot röda rummet ord (svenska / engelska): ",
+      avg_len_red_swedish / avg_len_red_english)
 # print(clean_file("moby.txt"))
