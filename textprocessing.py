@@ -37,9 +37,16 @@ def clean_file(filename):
     return get_words(file_text)
 
 
-print("Vanlig ord Svenska", average_length(clean_file("common_swedish.txt")))
-print("Vanlig ord Engelska", average_length(clean_file("common_english.txt")))
-print("Röda rummet Svenska: ", average_length(clean_file("roda_rummet.txt")))
-print("Röda rummet Engelska: ", average_length(clean_file("red_room.txt")))
+avg_len_common_swedish = average_length(clean_file("common_swedish.txt"))
+avg_len_common_english = average_length(clean_file("common_english.txt"))
+avg_len_red_swedish = average_length(clean_file("roda_rummet.txt"))
+avg_len_red_english = average_length(clean_file("red_room.txt"))
 
+
+print("Vanlig ord Svenska", avg_len_common_swedish)
+print("Vanlig ord Engelska", avg_len_common_english)
+print("Röda rummet Svenska: ", avg_len_red_swedish)
+print("Röda rummet Engelska: ", avg_len_red_english)
+print("Kvot vanliga ord (svenska / engelska): ", avg_len_common_swedish / avg_len_common_english)
+print("Kvot röda rummet ord (svenska / engelska): ", avg_len_red_swedish / avg_len_red_english)
 # print(clean_file("moby.txt"))
