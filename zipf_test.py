@@ -8,7 +8,6 @@ swedish_dictionary ={
 english_dictionary ={
 }
 
-
 def initDictionary(arr, dictionary):
 	for word in arr:
 		lword = word.lower()
