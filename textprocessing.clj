@@ -27,8 +27,7 @@
   (-> text
       (clean-text)
       (split-at-whitespace)
-      (frequencies)
-      (#(sort-by second %)))) ;; Sort by values of map
+      (frequencies)))
 
 
 ;; ----------- VARIABLES -----------
@@ -51,4 +50,6 @@
 ;; Map of all the unique words. 
 ;; Key = word
 ;; Value = Number of times the words occurences
-;;  (println unique-words-in-book)
+;;  (println 
+;;    (take 10
+;;      (sort-by second > unique-words-in-book))) ;; Sort by values of map descending order
