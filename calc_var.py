@@ -11,19 +11,42 @@ def calcVar(mean, words):
 	return sum / len(words)
 
 
-avg_swedish = average_length(clean_file("roda_rummet.txt"))
-rodarummet = clean_file("common_swedish.txt")
-avg_english = average_length(clean_file("red_room.txt"))
-redroom = clean_file("common_english.txt")
+clean_swedish=clean_file("common_swedish.txt")
+clean_english=clean_file("common_english.txt")
 
-var_swedish = calcVar(avg_swedish, rodarummet)
-var_english = calcVar(avg_english, redroom)
+mean_swedish = average_length(clean_swedish)
+rodarummet = clean_file("roda_rummet.txt")
+mean_english = average_length(clean_english)
+redroom = clean_file("red_room.txt")
+
+var_swedish = calcVar(mean_swedish, rodarummet)
+var_english = calcVar(mean_english, redroom)
 
 stdev_swedish = var_swedish**(1/2)
 stdev_english = var_english**(1/2)
 
-print("Swedish VAR(X)= ", var_swedish)
-print("English VAR(X)= ", var_english)
+var_swedish_common = calcVar(mean_swedish, clean_swedish)
+var_english_common = calcVar(mean_english, clean_english)
 
-print("Swedish stdev=" , stdev_swedish)
-print("English stdev=" , stdev_english)
+print()
+
+print("Swedish röda rummet VAR(X)= ", var_swedish)
+print("English red room VAR(X)= ", var_english)
+
+print()
+
+print("Swedish röda rummet stdev=" , stdev_swedish)
+print("English red room stdev=" , stdev_english)
+
+print()
+
+print("swedish common VAR", var_swedish_common)
+print("english common VAR", var_english_common)
+
+print()
+
+print("swedish common stdev=", var_swedish_common**(1/2))
+print("english common stdev=", var_english_common**(1/2))
+
+print()
+
