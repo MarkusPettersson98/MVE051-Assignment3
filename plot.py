@@ -1,27 +1,54 @@
 import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
+from itertools import groupby
+from functools import reduce
 
-# example data
-mu = 100  # mean of distribution
-sigma = 15  # standard deviation of distribution
-x = mu + sigma * np.random.randn(437)
 
-num_bins = 50
+from calc_var import calcVar, standard_deviation
+from textprocessing import get_words, clean_file, average_length
 
-fig, ax = plt.subplots()
 
-# the histogram of the data
-n, bins, patches = ax.hist(x, num_bins, density=1)
+def plot_words(words, title="Histogram of wordlength"):
+    # words = array of words! E.g. already cleaned text
+    # Calculate mean
+    mean = average_length(words)
 
-# add a 'best fit' line
-y = ((1 / (np.sqrt(2 * np.pi) * sigma)) *
-     np.exp(-0.5 * (1 / sigma * (bins - mu))**2))
-ax.plot(bins, y, '--')
-ax.set_xlabel('Smarts')
-ax.set_ylabel('Probability density')
-ax.set_title(r'Histogram of IQ: $\mu=100$, $\sigma=15$')
+    # Calculate standard deviation
+    stdev = standard_deviation(mean, words)
 
-# Tweak spacing to prevent clipping of ylabel
-fig.tight_layout()
-plt.show()
+    # Gather data points
+    word_lenghts = np.array(list((map(len, words))))
+
+    # Prepare data
+    mu = np.around(mean, 2)  # mean of distribution
+    sigma = np.around(stdev, 2)  # standard deviation of distribution
+    x = mu + sigma 
+
+    fig, ax = plt.subplots()
+
+    # the histogram of the data
+    n, bins, patches = ax.hist(x)
+
+
+    number_of_bars = range(1, 15, 1)
+    plt.hist(word_lenghts, bins=number_of_bars, color="blue", ec='black')
+
+    # add a 'best fit' line
+    y = ((1 / (np.sqrt(2 * np.pi) * sigma)) *
+         np.exp(-0.5 * (1 / sigma * (bins - mu))**2))
+
+    # Plot all points
+    ax.plot(bins, y, '--')
+
+
+    ax.set_xlabel('Word length')
+    ax.set_ylabel('Density')
+    ax.set_title(f'{title}: $\mu={mu}$, $\sigma={sigma}$')
+
+    # Tweak spacing to prevent clipping of ylabel
+    fig.tight_layout()
+    plt.show()
+
+
+plot_words(clean_file("red_room.txt"))
