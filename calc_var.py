@@ -5,7 +5,7 @@ from textprocessing import get_words, clean_file, average_length
 
 def calcVar(mean, words):
 	deviation = lambda acc, word: acc + (len(word)-mean)**2
-	sum = reduce(deviation, words, 0) / len(words)
+	sum = reduce(deviation, words, 0)
 	return sum / len(words)
 
 
