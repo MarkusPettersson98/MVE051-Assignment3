@@ -4,9 +4,12 @@ from functools import reduce
 
 
 def get_words(text):
+    # Use regex to remove apostrophes and concatenate affected words
+    apostrophes_filter = "'+"
+    partially_cleaned_text = re.sub(apostrophes_filter, "", text)
     # Use regex to remove special characters from text and replace them with whitespaces
     special_character_filter = "[^äåöÄÅÖéÉ\w]+" # Exclude nordic characters from regexp
-    cleaned_text = re.sub(special_character_filter, " ", text)
+    cleaned_text = re.sub(special_character_filter, " ", partially_cleaned_text)
 
     # Split at whitespace
     text_list = re.split(" ", cleaned_text)
