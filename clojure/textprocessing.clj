@@ -1,7 +1,7 @@
 (require '[clojure.string :as string])
 
 (def book
-  (slurp "../roda_rummet.txt"))
+  (slurp "roda_rummet.txt"))
 
 (defn words [text]
   (string/replace text
@@ -17,16 +17,18 @@
       (string/lower-case)
       (string/trim)))
 
+(defn words-list [text]
+  (split-at-whitespace
+   (clean-text text)))
+
 (defn count-words [text]
   (count
-   (split-at-whitespace
-    (clean-text text))))
+   (words-list text)))
 
 ;; This function is cool 
 (defn group-unique-words [text]
   (-> text
-      (clean-text)
-      (split-at-whitespace)
+      (words-list)
       (frequencies)))
 
 
@@ -46,6 +48,8 @@
 
 ;; Check if they are the same!
 (= word-count-1 word-count-2)
+
+(group-unique-words book)
 
 ;; Map of all the unique words. 
 ;; Key = word
