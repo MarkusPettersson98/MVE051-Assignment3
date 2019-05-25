@@ -1,6 +1,5 @@
 import re  # Library for dealing with regular expressions
 from functools import reduce
-
 # This file contains functions for cleaning up a text, e.g. extracting all the words with all special characters removed.
 
 
@@ -26,6 +25,8 @@ def clean_file(filename):
     file = open(filename, "r")
     file_text = file.read()
     return get_words(file_text)
+
+
 
 
 # avg_len_common_swedish = average_length(clean_file("common_swedish.txt"))
