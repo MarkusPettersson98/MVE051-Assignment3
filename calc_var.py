@@ -1,13 +1,11 @@
 import re  # Library for dealing with regular expressions
-import heapq
 from functools import reduce
 from textprocessing import get_words, clean_file, average_length
 
 
 def calcVar(mean, words):
-	sum=0
-	for word in words:
-		sum = sum + (len(word)-mean)**2
+	deviation = lambda acc, word: acc + (len(word)-mean)**2
+	sum = reduce(deviation, words, 0) / len(words)
 	return sum / len(words)
 
 
