@@ -1,7 +1,7 @@
 (require '[clojure.string :as string])
 
 (def book
-  (slurp "roda_rummet.txt"))
+  (slurp "../roda_rummet.txt"))
 
 (defn words [text]
   (string/replace text
