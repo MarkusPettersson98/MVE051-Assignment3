@@ -51,4 +51,11 @@ def plot_words(words, title="Histogram of wordlength"):
     plt.show()
 
 
-plot_words(clean_file("red_room.txt"))
+# Common words plots
+plot_words(clean_file("common_swedish.txt"), "Historgram of wordlengths - common swedish words")
+plot_words(clean_file("common_english.txt"), "Historgram of wordlengths - common english words")
+
+
+# Strindbergs plots
+plot_words(clean_file("roda_rummet.txt"),   "Historgram of wordlengths - Red room (swedish)")
+plot_words(clean_file("red_room.txt"),      "Historgram of wordlengths - Red room (english)")
