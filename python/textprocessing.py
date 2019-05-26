@@ -2,6 +2,7 @@ import re  # Library for dealing with regular expressions
 from functools import reduce
 # This file contains functions for cleaning up a text, e.g. extracting all the words with all special characters removed.
 
+text_path = "texts/"
 
 def get_words(text):
     # Use regex to remove apostrophes and concatenate affected words
@@ -25,7 +26,7 @@ def average_length(words):
 
 
 def clean_file(filename):
-    file = open(filename, "r")
+    file = open(text_path + filename, "r")
     file_text = file.read()
     return get_words(file_text)
 
