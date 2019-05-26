@@ -13,7 +13,7 @@ def frequencies_percentage(words):
     sorted_freqs = sort_dict(freq)
 
     def calc_percentage(tup): return (
-        tup[0], np.around(tup[1]/len(word_lenghts), 2))
+        tup[0], np.around(tup[1]/len(word_lenghts), 3))
     percentage_freqs = list(map(calc_percentage, sorted_freqs))
     return percentage_freqs
 
