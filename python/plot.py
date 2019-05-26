@@ -31,7 +31,7 @@ def plot_words(words, title="Histogram of wordlength"):
     n, bins, patches = ax.hist(x)
 
 
-    number_of_bars = range(1, 15, 1)
+    number_of_bars = range(1, max(word_lenghts), 1)
     plt.hist(word_lenghts, bins=number_of_bars, density=False, color="blue", ec='black')
 
     # # add a 'best fit' line
