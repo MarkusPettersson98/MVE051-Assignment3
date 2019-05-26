@@ -1,3 +1,5 @@
+Data som används för att analysera Strindbergs text utifrån Zipfs lag.
+
 -------- Svenska --------
 
 och & 3438 \\

@@ -1,7 +1,7 @@
 (require '[clojure.string :as string])
 
 (def book
-  (slurp "red_room.txt"))
+  (slurp "texts/red_room.txt"))
 
 (defn words [text]
   (-> text
@@ -46,6 +46,25 @@
 (def unique-words-in-book
   (group-unique-words book))
 
+;; Zipfs law
+(defn zipfs [text]
+  (let [most-common-word (first text)
+        occurences-most-common-word (second most-common-word)])
+  (map-indexed (fn [index word]
+                ;; Do something with index
+                 (let [rang (+ 1 index)]
+                   (zipmap index word)))
+               text))
+
+;; Check Zipfs law on the n most common words
+(defn zipfs-map [coll n]
+  (take n
+        (sort-map
+         coll)))
+
+(zipfs-map unique-words-in-book 25)
+
+
 ;; Count all words in the book
 (def word-count-1
   (count-words book))
@@ -56,30 +75,6 @@
   (reduce +
           (map second unique-words-in-book)))
 
+
 ;; Check if they are the same!
 (= word-count-1 word-count-2)
-
-(group-unique-words book)
-
-(defn zipfs [text]
-       ;; Zipfs law
-  (def most-common-word (first text))
-  (def occurences-most-common-word (second most-common-word))
-  (map-indexed (fn [index word]
-                      ;; Do something with index
-                 (def rang (+ 1 index))
-                 (println rang word))
-               text))
-
-
-(zipfs
- (take 25
-       (sort-map
-        (group-unique-words book))))
-
-;; Map of all the unique words. 
-;; Key = word
-;; Value = Number of times the words occurences
-;;  (println 
-;;    (take 10
-;;      (sort-by second > unique-words-in-book))) ;; Sort by values of map descending order
