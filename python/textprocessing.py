@@ -24,6 +24,15 @@ def average_length(words):
     number_of_words = len(words)
     return text_length / number_of_words
 
+def frequencies(coll):
+    # Count how many times an item shows up in a collection
+    output = {}
+    for item in coll:
+        if item not in output:
+            output[item] = 0
+        output[item] += 1
+    return output
+
 
 def clean_file(filename):
     file = open(text_path + filename, "r")

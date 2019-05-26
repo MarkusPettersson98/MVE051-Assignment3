@@ -6,9 +6,8 @@ from functools import reduce
 import matplotlib.ticker as ticker
 
 
-
 from calc_var import calcVar, standard_deviation
-from textprocessing import get_words, clean_file, average_length
+from textprocessing import get_words, clean_file, average_length, frequencies
 
 
 def plot_words(words, title="Histogram of wordlength"):
@@ -25,16 +24,16 @@ def plot_words(words, title="Histogram of wordlength"):
     # Prepare data
     mu = np.around(mean, 2)  # mean of distribution
     sigma = np.around(stdev, 2)  # standard deviation of distribution
-    x = mu + sigma 
+    x = mu + sigma
 
     fig, ax = plt.subplots()
 
     # the histogram of the data
     n, bins, patches = ax.hist(x)
 
-
-    number_of_bars = range(1, max(word_lenghts), 1)
-    plt.hist(word_lenghts, bins=number_of_bars, density=False, color="blue", ec='black')
+    number_of_bars = range(1, 15, 1)
+    plt.hist(word_lenghts, bins=number_of_bars,
+             density=False, color="blue", ec='black')
 
     # # add a 'best fit' line
     y = ((1 / (np.sqrt(2 * np.pi) * sigma)) *
@@ -43,24 +42,33 @@ def plot_words(words, title="Histogram of wordlength"):
     # Plot all points
     # ax.plot(bins, y, '--')
 
-
     ax.set_xlabel('Word length')
     ax.set_ylabel('Density (percent)')
     ax.set_title(f'{title}: $\mu={mu}$, $\sigma={sigma}$')
 
-    ax.yaxis.set_major_formatter(ticker.PercentFormatter(xmax=len(word_lenghts)))
-
+    ax.yaxis.set_major_formatter(
+        ticker.PercentFormatter(xmax=len(word_lenghts)))
 
     # Tweak spacing to prevent clipping of ylabel
     fig.tight_layout()
     plt.show()
 
 
+common_swedish = clean_file("common_swedish.txt")
+common_english = clean_file("common_english.txt")
+roda_rummet = clean_file("roda_rummet.txt")
+red_room = clean_file("red_room.txt")
+
+
 # Common words plots
-plot_words(clean_file("common_swedish.txt"), "Historgram of wordlengths - common swedish words")
-# plot_words(clean_file("common_english.txt"), "Historgram of wordlengths - common english words")
+plot_words(common_swedish,
+           "Historgram of wordlengths - common swedish words")
+# plot_words(common_english,
+#            "Historgram of wordlengths - common english words")
 
 
-# # Strindbergs plots
-# plot_words(clean_file("roda_rummet.txt"),   "Historgram of wordlengths - Red room (swedish)")
-# plot_words(clean_file("red_room.txt"),      "Historgram of wordlengths - Red room (english)")
+# # # Strindbergs plots
+# plot_words(roda_rummet,
+#            "Historgram of wordlengths - Red room (swedish)")
+# plot_words(red_room,
+#            "Historgram of wordlengths - Red room (english)")
