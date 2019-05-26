@@ -32,14 +32,14 @@ def plot_words(words, title="Histogram of wordlength"):
 
 
     number_of_bars = range(1, 15, 1)
-    plt.hist(word_lenghts, bins=number_of_bars, color="blue", ec='black')
+    plt.hist(word_lenghts, bins=number_of_bars, density=False, color="blue", ec='black')
 
-    # add a 'best fit' line
+    # # add a 'best fit' line
     y = ((1 / (np.sqrt(2 * np.pi) * sigma)) *
          np.exp(-0.5 * (1 / sigma * (bins - mu))**2))
 
     # Plot all points
-    ax.plot(bins, y, '--')
+    # ax.plot(bins, y, '--')
 
 
     ax.set_xlabel('Word length')
@@ -53,9 +53,9 @@ def plot_words(words, title="Histogram of wordlength"):
 
 # Common words plots
 plot_words(clean_file("common_swedish.txt"), "Historgram of wordlengths - common swedish words")
-plot_words(clean_file("common_english.txt"), "Historgram of wordlengths - common english words")
+# plot_words(clean_file("common_english.txt"), "Historgram of wordlengths - common english words")
 
 
-# Strindbergs plots
-plot_words(clean_file("roda_rummet.txt"),   "Historgram of wordlengths - Red room (swedish)")
-plot_words(clean_file("red_room.txt"),      "Historgram of wordlengths - Red room (english)")
+# # Strindbergs plots
+# plot_words(clean_file("roda_rummet.txt"),   "Historgram of wordlengths - Red room (swedish)")
+# plot_words(clean_file("red_room.txt"),      "Historgram of wordlengths - Red room (english)")
