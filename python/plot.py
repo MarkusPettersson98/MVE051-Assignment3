@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from itertools import groupby
 from functools import reduce
+import matplotlib.ticker as ticker
+
 
 
 from calc_var import calcVar, standard_deviation
@@ -43,8 +45,11 @@ def plot_words(words, title="Histogram of wordlength"):
 
 
     ax.set_xlabel('Word length')
-    ax.set_ylabel('Density')
+    ax.set_ylabel('Density (percent)')
     ax.set_title(f'{title}: $\mu={mu}$, $\sigma={sigma}$')
+
+    ax.yaxis.set_major_formatter(ticker.PercentFormatter(xmax=len(word_lenghts)))
+
 
     # Tweak spacing to prevent clipping of ylabel
     fig.tight_layout()
